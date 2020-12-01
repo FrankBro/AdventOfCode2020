@@ -59,7 +59,7 @@ linters:
         - misspell
         - nakedret
         - nestif
-        - nlreturn
+        # - nlreturn
         - noctx
         - nolintlint
         - paralleltest
