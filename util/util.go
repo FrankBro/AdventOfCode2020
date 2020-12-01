@@ -3,6 +3,7 @@ package util
 import (
 	"bufio"
 	"os"
+	"strconv"
 )
 
 func Check(err error) {
@@ -31,4 +32,18 @@ func ReadLines() []string {
 		lines = append(lines, line)
 	}
 	return lines
+}
+
+func ReadNumbers() []int {
+	numbers := make([]int, 0)
+	f, err := os.Open("input.txt")
+	Check(err)
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line := scanner.Text()
+		number, err := strconv.Atoi(line)
+		Check(err)
+		numbers = append(numbers, number)
+	}
+	return numbers
 }
