@@ -9,10 +9,14 @@ import (
 
 func TestPart1(t *testing.T) {
 	t.Parallel()
-	require.EqualValues(t, 712075, day1.Part1())
+	output, err := day1.Part1()
+	require.NoError(t, err)
+	require.EqualValues(t, 712075, output)
 }
 
 func TestPart2(t *testing.T) {
 	t.Parallel()
-	require.EqualValues(t, 145245270, day1.Part2())
+	output, err := day1.Part2()
+	require.NoError(t, err)
+	require.EqualValues(t, 145245270, output)
 }

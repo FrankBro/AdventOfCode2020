@@ -1,30 +1,42 @@
 package day1
 
 import (
+	"errors"
+	"fmt"
+
 	"github.com/FrankBro/AdventOfCode2020/util"
 )
 
 const (
-	addedValue = 2020
+	addedValue     = 2020
+	errReadNumbers = "failed to read input as numbers: %w"
 )
 
-func Part1() int {
-	numbers := util.ReadNumbers()
+var ErrNotFound = errors.New("not found")
+
+func Part1() (int, error) {
+	numbers, err := util.ReadNumbers()
+	if err != nil {
+		return 0, fmt.Errorf(errReadNumbers, err)
+	}
 	for i, ni := range numbers {
 		for j, nj := range numbers {
 			if i == j {
 				continue
 			}
 			if ni+nj == addedValue {
-				return ni * nj
+				return ni * nj, nil
 			}
 		}
 	}
-	panic("not found")
+	return 0, ErrNotFound
 }
 
-func Part2() int {
-	numbers := util.ReadNumbers()
+func Part2() (int, error) {
+	numbers, err := util.ReadNumbers()
+	if err != nil {
+		return 0, fmt.Errorf(errReadNumbers, err)
+	}
 	for i, ni := range numbers {
 		for j, nj := range numbers {
 			for k, nk := range numbers {
@@ -32,10 +44,10 @@ func Part2() int {
 					continue
 				}
 				if ni+nj+nk == addedValue {
-					return ni * nj * nk
+					return ni * nj * nk, nil
 				}
 			}
 		}
 	}
-	panic("not found")
+	return 0, ErrNotFound
 }
