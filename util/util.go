@@ -73,3 +73,12 @@ func Parse(input string, delims ...string) ([]string, error) {
 	output[len(delims)] = input
 	return output, nil
 }
+
+func Exists(value string, values ...string) bool {
+	for i := range values {
+		if value == values[i] {
+			return true
+		}
+	}
+	return false
+}
