@@ -145,9 +145,9 @@ func Part1() (int, error) {
 			}
 		}
 	}
-	// if passport.allSet() {
-	// 	valid++
-	// }
+	if passport.allPresent() {
+		valid++
+	}
 	return valid, nil
 }
 
