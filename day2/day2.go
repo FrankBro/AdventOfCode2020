@@ -33,7 +33,7 @@ func getValues(line string) (int, int, string, string, error) {
 }
 
 func Part1() (int, error) {
-	lines, err := util.ReadLines()
+	lines, err := util.ReadLinesNoEmpty()
 	if err != nil {
 		return 0, fmt.Errorf(errReadLines, err)
 	}
@@ -53,7 +53,7 @@ func Part1() (int, error) {
 }
 
 func Part2() (int, error) {
-	lines, err := util.ReadLines()
+	lines, err := util.ReadLinesNoEmpty()
 	if err != nil {
 		return 0, fmt.Errorf(errReadLines, err)
 	}

@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
@@ -11,6 +12,7 @@ import (
 
 const (
 	errOpen = "failed to open file: %w"
+	errRead = "failed to read file: %w"
 	errAtoi = "failed to convert to int: %w"
 )
 
@@ -27,6 +29,20 @@ func ReadLine() (string, error) {
 }
 
 func ReadLines() ([]string, error) {
+	f, err := os.Open("input.txt")
+	if err != nil {
+		return nil, fmt.Errorf(errOpen, err)
+	}
+	reader := bufio.NewReader(f)
+	all, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil, fmt.Errorf(errRead, err)
+	}
+	split := strings.Split(string(all), "\n")
+	return split, nil
+}
+
+func ReadLinesNoEmpty() ([]string, error) {
 	lines := make([]string, 0)
 	f, err := os.Open("input.txt")
 	if err != nil {
